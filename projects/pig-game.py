@@ -28,23 +28,30 @@ players_score = [0 for _ in range(number_players)]
 while True: #loop with game logic, it'll be true while no one gets 50 or more points.
     
     for player_index in range(len(players_score)):
-        player_decision = input("Do you wanna roll the dice? (y/n): ")
+        print(f"\nScoreboard: {players_score}")
+        print(f"Player {player_index + 1} turn!")
 
-        if player_decision.lower() == "n":
-            break
-        else:
-            value = roll()
-            if value == 1:
-                print("You rolled a 1! Good luck next round!")
-                players_score[player_index] = players_score[player_index] + 0
+        while True:
+            player_decision = input("\nDo you wanna roll the dice? (y/n): ")
+
+            if player_decision.lower() == "n":
                 break
+            elif player_decision.lower() == "y":
+                value = roll()
+                if value == 1:
+                    print("\nYou rolled a 1! Good luck next round!")
+                    players_score[player_index] = players_score[player_index]
+                    break
+                else:
+                    players_score[player_index] += value
+                    print(f"\nYou rolled a {value}")
+                    print(f"Player {player_index + 1} score now is equal to {players_score[player_index]}")
+
+                    if players_score[player_index] >= 50:
+                        break
             else:
-                players_score[player_index] += value
-                print(f"You rolled a {value}")
-                print(f"Player {player_index} score is equal to {players_score[player_index]}")
+                print("Invalid, try again")
 
     if max(players_score) >= 50:
-        print(f"Player is the winner!")
+        print(f"\nPlayer {players_score.index(max(players_score)) + 1} is the winner with a score of {players_score[player_index]}!\n")
         break
-
-# i got stuck at this part! idk why when player 1 rolls the dice, he gets the points and then its players 2 round, its not supposed to do that!
