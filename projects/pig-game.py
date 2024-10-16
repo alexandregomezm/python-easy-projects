@@ -54,4 +54,4 @@ while max(players_score) <= 50: #loop with game logic, it'll be true while no on
         players_score[player_index] += current_score
 
 
-print(f"\nPlayer {players_score.index(max(players_score)) + 1} is the winner with a score of {players_score[player_index]}!\n")
+print(f"\nPlayer {players_score.index(max(players_score)) + 1} is the winner with a score of {max(players_score)}!\n")
