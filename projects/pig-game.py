@@ -25,9 +25,11 @@ while True: #loop to get a valid number of players
 
 players_score = [0 for _ in range(number_players)]
 
-while True: #loop with game logic, it'll be true while no one gets 50 or more points.
+while max(players_score) <= 50: #loop with game logic, it'll be true while no one gets 50 or more points.
     
     for player_index in range(len(players_score)):
+        current_score = 0
+
         print(f"\nScoreboard: {players_score}")
         print(f"Player {player_index + 1} turn!")
 
@@ -40,18 +42,16 @@ while True: #loop with game logic, it'll be true while no one gets 50 or more po
                 value = roll()
                 if value == 1:
                     print("\nYou rolled a 1! Good luck next round!")
-                    players_score[player_index] = players_score[player_index]
+                    current_score = 0
                     break
                 else:
-                    players_score[player_index] += value
+                    current_score += value
                     print(f"\nYou rolled a {value}")
-                    print(f"Player {player_index + 1} score now is equal to {players_score[player_index]}")
-
-                    if players_score[player_index] >= 50:
-                        break
+                    print(f"Player {player_index + 1} score now is equal to {players_score[player_index] + current_score}")
             else:
                 print("Invalid, try again")
+        
+        players_score[player_index] += current_score
 
-    if max(players_score) >= 50:
-        print(f"\nPlayer {players_score.index(max(players_score)) + 1} is the winner with a score of {players_score[player_index]}!\n")
-        break
+
+print(f"\nPlayer {players_score.index(max(players_score)) + 1} is the winner with a score of {players_score[player_index]}!\n")
