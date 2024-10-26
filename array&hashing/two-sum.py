@@ -8,8 +8,8 @@ class Solution:
             diff = target - n
             if diff in values:
                 return [values[diff], i]
-            values[n] = i
-
+            values[n] = i # values = {3:0, 4:1, 5:2, 6:3}   {n : i}
+            
 nums = [3,4,5,6]
 target = 7
 sol = Solution()
