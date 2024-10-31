@@ -1,21 +1,25 @@
+from typing import List
+
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        output = []
-        for i in range(len(strs)):
-            for j in range(i+1, len(strs)):
-                if len(strs[i]) == len(strs(j)):    
-                    countX, countY = {}, {}
+        output = {}
 
-                    countX[strs[i]] = 1 + countX.get(strs[i], 0)  # the function get defines 0 if its the first occurancy of that character
-                    countY[strs[j]] = 1 + countY.get(strs[j], 0) 
+        for word in strs:
+            sorted_word = ''.join(sorted(word))
 
-                    for c in countX:
-                        if countX[c] != countY.get(c, 0):
-                            output.append(strs[i])
-                        else:
-                            output.append(strs[i], strs[j])
+            if sorted_word not in output:
+                output[sorted_word] = []
+                
+            output[sorted_word].append(word)
+            
+            # output = {
+            # "act": ["act", "cat"],
+            # "opst": ["pots", "tops", "stop"],
+            # "aht": ["hat"]}
 
-        return output
+        return list(output.values())
+            
 
-# Input: strs = ["act","pots","tops","cat","stop","hat"]
-# Output: [["hat"],["act", "cat"],["stop", "pots", "tops"]]
+strs = ["act", "pots", "tops", "cat", "stop", "hat"]
+solution = Solution()
+print(solution.groupAnagrams(strs))
